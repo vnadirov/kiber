@@ -1,0 +1,130 @@
+/***************************************************/
+/****************** Hack Tutorial ******************/
+/***************************************************/
+/************ Click 'Next' to get started! *********/
+/************ You can use buttons OR `ctrl-b` and `ctrl-n` to navigate *********/
+<?php
+// ^-- FIXME: replace <?php with <?hh
+
+// A Hack file always starts with <?hh
+<?hh
+
+// Hack functions are annotated with types.
+function my_negation(bool $x): bool {
+  return !$x;
+}
+
+// FIXME: annotate this function parameter
+// and return with the type 'int'.
+function add_one(/* TODO */ $x): /* TODO */ {
+  return $x+1;
+}
+<?hh
+
+/* Hack errors come in multiple parts.
+ * Hover over the underlined parts!
+ */
+
+function add_one(int $x): int {
+  return $x+1;
+}
+
+function test(): void {
+  $my_string = 'hello';
+
+  // Some clever code ...
+
+  add_one($my_string);
+}
+<?hh
+
+// Prefixing a type with '?' permits null.
+
+// TODO: fix the type of the parameter $x to permit null.
+function f(int $x): void {
+  var_dump($x);
+}
+
+function test(): void {
+  f(123);
+  f(null);
+}
+<?hh
+
+interface User { public function getName(): string; }
+
+function get_user_name(?User $user): string {
+
+  if($user !== null) {
+    // We checked that $user was not null.
+    // Its type is now 'User'.
+
+    /* TODO: return $user->getName() */
+  }
+  return '<invalid name>';
+}
+
+function test(User $user) {
+  $name1 = get_user_name($user);
+  $name2 = get_user_name(null);
+}
+<?hh
+
+interface User { public function getName(): string; }
+
+// There are many ways to handle null values.
+// Throwing an exception is one of them.
+
+function get_user_name(?User $user): string {
+
+  if($user === null) {
+    throw new RuntimeException('Invalid user name');
+  }
+  /* TODO: return $user->getName() */
+}
+
+function test(User $user) {
+  $name1 = get_user_name($user);
+  $name2 = get_user_name(null);
+}
+<?hh
+
+// Hack introduces new collection types (Vector, Set and Map).
+function test(): int {
+
+  // Vector is preferred over array(1, 2, 3)
+  $vector = Vector {1, 2, 3};
+
+  $sum = 0;
+  foreach ($vector as $val) {
+    $sum += $val;
+  }
+
+  return $sum;
+}
+<?hh
+
+// Hack uses generics for Collection types.
+
+// TODO: fix the return type of the function 'test'
+function test(): Vector<string> {
+  $vector = Vector {1, 2, 3};
+  return $vector;
+}
+<?hh
+
+function vector_add1(Vector<int> $v): Vector<int> {
+  // Example of lambda expressions.
+  return $v->map($x ==> $x + 1);
+}
+
+function vector_mult2(Vector<int> $v): Vector<int> {
+  // TODO: write a function multiplying all the elements by 2
+}
+/*
+ * Congratulations!
+ * You completed the beginner's tutorial.
+ *
+ * Click next to continue in expert mode.
+ */
+
